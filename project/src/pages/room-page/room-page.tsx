@@ -202,7 +202,7 @@ function RoomPage(): JSX.Element {
           <div className="near-places__list places__list">
             <article className="near-places__card place-card">
               <div className="near-places__image-wrapper place-card__image-wrapper">
-                <a href="#">
+                <a href="#todo">
                   <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
                 </a>
               </div>
@@ -226,14 +226,14 @@ function RoomPage(): JSX.Element {
                   </div>
                 </div>
                 <h2 className="place-card__name">
-                  <a href="#">Wood and stone place</a>
+                  <a href="#todo">Wood and stone place</a>
                 </h2>
                 <p className="place-card__type">Private room</p>
               </div>
             </article>
             <article className="near-places__card place-card">
               <div className="near-places__image-wrapper place-card__image-wrapper">
-                <a href="#">
+                <a href="#todo">
                   <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200" alt="Place image" />
                 </a>
               </div>
@@ -257,7 +257,7 @@ function RoomPage(): JSX.Element {
                   </div>
                 </div>
                 <h2 className="place-card__name">
-                  <a href="#">Canal View Prinsengracht</a>
+                  <a href="#todo">Canal View Prinsengracht</a>
                 </h2>
                 <p className="place-card__type">Apartment</p>
               </div>
@@ -267,7 +267,7 @@ function RoomPage(): JSX.Element {
                 <span>Premium</span>
               </div>
               <div className="near-places__image-wrapper place-card__image-wrapper">
-                <a href="#">
+                <a href="#todo">
                   <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />
                 </a>
               </div>
@@ -291,7 +291,7 @@ function RoomPage(): JSX.Element {
                   </div>
                 </div>
                 <h2 className="place-card__name">
-                  <a href="#">Nice, cozy, warm big bed apartment</a>
+                  <a href="#todo">Nice, cozy, warm big bed apartment</a>
                 </h2>
                 <p className="place-card__type">Apartment</p>
               </div>
