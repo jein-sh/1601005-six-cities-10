@@ -2,6 +2,7 @@ import FormComment from '../../components/form-comment/form-comment';
 import {Offer, Offers} from '../../types/offer';
 import {Reviews} from '../../types/review';
 import {useParams} from 'react-router-dom';
+import ErrorPage from '../error-page/error-page';
 
 type RoomPageProps = {
   offers: Offers;
@@ -10,7 +11,12 @@ type RoomPageProps = {
 
 function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
   const params = useParams();
-  const offer: Offer = offers.find((offer) => offer.id === params.id);
+  const offer: Offer | undefined = offers.find((item) => item.id === params.id);
+
+  if (!offer) {
+    return <ErrorPage />;
+  }
+
   const {price, name, ratingFull, images, isPremium, inside, features: {entire, bedroom, adults}, host: {nameHost, status, avatarHost, description}} = offer;
   const starsFull = String(ratingFull * 100 / 5);
   const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
@@ -20,8 +26,8 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
-            {images.map((image: any) =>(
-              <div key={image.id} className="property__image-wrapper">
+            {images.map((image) =>(
+              <div key={image} className="property__image-wrapper">
                 <img className="property__image" src={image} alt="Photo studio" />
               </div>
             ))}
@@ -66,8 +72,8 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
             <div className="property__inside">
               <h2 className="property__inside-title">What&apos;s inside</h2>
               <ul className="property__inside-list">
-                {inside.map((item: any)=>(
-                  <li key={item.id} className="property__inside-item">
+                {inside.map((item)=>(
+                  <li key={item} className="property__inside-item">
                     {item}
                   </li>
                 ))}
@@ -87,8 +93,8 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
                 </span>
               </div>
               <div className="property__description">
-                {description.map((text: any)=>(
-                  <p key={text.id} className="reviews__text">
+                {description.map((text)=>(
+                  <p key={text} className="reviews__text">
                     {text}
                   </p>
                 ))}

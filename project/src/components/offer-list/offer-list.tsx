@@ -8,7 +8,7 @@ type OfferListProps = {
 
 function OfferList({offers}: OfferListProps): JSX.Element {
 
-  const [activeCard, setActiveCard] = useState(-1);
+  const [activeCard, setActiveCard] = useState<string | undefined>(undefined);
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -18,9 +18,9 @@ function OfferList({offers}: OfferListProps): JSX.Element {
         return(
           <PlaceCard
             key={keyValue}
-            offer= {offer}
-            isActive={id === activeCard}
-            onCardMouseMove = {() => setActiveCard(activeCard === id ? -1 : id)}
+            offer={offer}
+            isActive={offer.id === activeCard}
+            onCardMouseMove ={ () => setActiveCard(offer.id) }
           />
         );
       })}

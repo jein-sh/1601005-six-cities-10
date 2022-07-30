@@ -14,7 +14,7 @@ function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
           <li className="favorites__locations-items">
             <div className="favorites__locations locations locations--current">
               <div className="locations__item">
-                <a className="locations__item-link" href="#">
+                <a className="locations__item-link" href="#todo">
                   <span>Amsterdam</span>
                 </a>
               </div>
@@ -31,7 +31,7 @@ function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
           <li className="favorites__locations-items">
             <div className="favorites__locations locations locations--current">
               <div className="locations__item">
-                <a className="locations__item-link" href="#">
+                <a className="locations__item-link" href="#todo">
                   <span>Cologne</span>
                 </a>
               </div>
