@@ -2,18 +2,13 @@ import {useState, ChangeEvent} from 'react';
 
 function FormComment(): JSX.Element {
   const [formData, setFormData] = useState({
-    comment: '',
+    rating: '',
+    review: '',
   });
 
-  const fieldChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    const {value} = evt.target;
-    setFormData({...formData, comment: value});
-  };
-
-  const [stars, setStars] = useState(0);
-
-  const starsChangeHandle = (item: number) => {
-    setStars(item);
+  const formChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = evt.target;
+    setFormData({...formData, [name]: value});
   };
 
   return (
@@ -22,8 +17,8 @@ function FormComment(): JSX.Element {
       <div className="reviews__rating-form form__rating">
 
         <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"
-          checked={stars === 5}
-          onChange={() => starsChangeHandle(5)}
+          checked={formData.rating === '5'}
+          onChange={formChangeHandle}
         />
         <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
           <svg className="form__star-image" width="37" height="33">
@@ -32,8 +27,8 @@ function FormComment(): JSX.Element {
         </label>
 
         <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"
-          checked={stars === 4}
-          onChange={() => starsChangeHandle(4)}
+          checked={formData.rating === '4'}
+          onChange={formChangeHandle}
         />
         <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
           <svg className="form__star-image" width="37" height="33">
@@ -42,8 +37,8 @@ function FormComment(): JSX.Element {
         </label>
 
         <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"
-          checked={stars === 3}
-          onChange={() => starsChangeHandle(3)}
+          checked={formData.rating === '3'}
+          onChange={formChangeHandle}
         />
         <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
           <svg className="form__star-image" width="37" height="33">
@@ -52,8 +47,8 @@ function FormComment(): JSX.Element {
         </label>
 
         <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"
-          checked={stars === 2}
-          onChange={() => starsChangeHandle(2)}
+          checked={formData.rating === '2'}
+          onChange={formChangeHandle}
         />
         <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
           <svg className="form__star-image" width="37" height="33">
@@ -62,8 +57,8 @@ function FormComment(): JSX.Element {
         </label>
 
         <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"
-          checked={stars === 1}
-          onChange={() => starsChangeHandle(1)}
+          checked={formData.rating === '1'}
+          onChange={formChangeHandle}
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
           <svg className="form__star-image" width="37" height="33">
@@ -72,8 +67,8 @@ function FormComment(): JSX.Element {
         </label>
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.comment}
-        onChange={fieldChangeHandle}
+        value={formData.review}
+        onChange={formChangeHandle}
       >
       </textarea>
       <div className="reviews__button-wrapper">
