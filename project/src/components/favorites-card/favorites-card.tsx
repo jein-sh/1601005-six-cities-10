@@ -1,29 +1,26 @@
-import { Link } from 'react-router-dom';
 import {Offer} from '../../types/offer';
 
-type PlaceCardProps = {
+type FavoritesCardProps = {
   offer: Offer;
-  isActive: boolean;
-  onCardMouseMove: ()=> void;
 }
 
-function PlaceCard({offer, isActive, onCardMouseMove}: PlaceCardProps): JSX.Element {
+function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
 
-  const {id, price, name, ratingFull, type, images, isPremium} = offer;
+  const {price, name, ratingFull, type, images, isPremium} = offer;
   const starsFull = String(ratingFull * 100 / 5);
   const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
 
   return (
-    <article className="cities__card place-card" onMouseMove={onCardMouseMove}>
+    <article className="favorites__card place-card">
 
       {premium}
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#todo">
+      <div className="favorites__image-wrapper place-card__image-wrapper">
+        <a href="#">
           <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place image" />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -43,7 +40,7 @@ function PlaceCard({offer, isActive, onCardMouseMove}: PlaceCardProps): JSX.Elem
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to = {`/offer/${id}`}>{name}</Link>
+          <a href="#todo">{name}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -51,4 +48,4 @@ function PlaceCard({offer, isActive, onCardMouseMove}: PlaceCardProps): JSX.Elem
   );
 }
 
-export default PlaceCard;
+export default FavoritesCard;
