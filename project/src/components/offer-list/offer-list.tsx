@@ -13,14 +13,14 @@ function OfferList({offers}: OfferListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => {
-        const keyValue = offer.id;
+        const keyValue = offer.id.toString();
 
         return(
           <PlaceCard
             key={keyValue}
             offer={offer}
-            isActive={offer.id === activeCard}
-            onCardMouseMove ={ () => setActiveCard(offer.id) }
+            isActive={keyValue === activeCard}
+            onCardMouseMove ={ () => setActiveCard(keyValue) }
           />
         );
       })}

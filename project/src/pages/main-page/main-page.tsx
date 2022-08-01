@@ -1,11 +1,13 @@
 import OfferList from '../../components/offer-list/offer-list';
-import {Offers} from '../../types/offer';
+import Map from '../../components/map/map';
+import {City, Offers} from '../../types/offer';
 
 type MainPageProps = {
   offers: Offers;
+  city: City;
 }
 
-function MainPage({offers}: MainPageProps): JSX.Element {
+function MainPage({offers, city}: MainPageProps): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -68,7 +70,9 @@ function MainPage({offers}: MainPageProps): JSX.Element {
             <OfferList offers= {offers} />
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <section className="cities__map map">
+              <Map city= {city} offers= {offers} currentOffer={undefined}/>
+            </section>
           </div>
         </div>
       </div>

@@ -11,15 +11,16 @@ type RoomPageProps = {
 
 function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
   const params = useParams();
-  const offer: Offer | undefined = offers.find((item) => item.id === params.id);
+  const offer: Offer | undefined = offers.find((item) => item.id.toString() === params.id);
 
   if (!offer) {
     return <ErrorPage />;
   }
 
-  const {price, name, ratingFull, images, isPremium, inside, features: {entire, bedroom, adults}, host: {nameHost, status, avatarHost, description}} = offer;
+  const {price, title, ratingFull, images, isPremium, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}} = offer;
   const starsFull = String(ratingFull * 100 / 5);
   const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
+  const pro = isPro ? <span className="property__user-status"></span> : null;
 
   return (
     <main className="page__main page__main--property">
@@ -38,7 +39,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
             {premium}
             <div className="property__name-wrapper">
               <h1 className="property__name">
-                {name}
+                {title}
               </h1>
               <button className="property__bookmark-button button" type="button">
                 <svg className="property__bookmark-icon" width="31" height="33">
@@ -56,13 +57,13 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
             </div>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
-                {entire}
+                {type}
               </li>
               <li className="property__feature property__feature--bedrooms">
-                {bedroom} Bedrooms
+                {bedrooms} Bedrooms
               </li>
               <li className="property__feature property__feature--adults">
-                Max {adults} adults
+                Max {maxAdults} adults
               </li>
             </ul>
             <div className="property__price">
@@ -72,7 +73,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
             <div className="property__inside">
               <h2 className="property__inside-title">What&apos;s inside</h2>
               <ul className="property__inside-list">
-                {inside.map((item)=>(
+                {goods.map((item)=>(
                   <li key={item} className="property__inside-item">
                     {item}
                   </li>
@@ -83,21 +84,17 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
                 <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                  <img className="property__avatar user__avatar" src={avatarHost} width="74" height="74" alt="Host avatar" />
+                  <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar" />
                 </div>
                 <span className="property__user-name">
                   {nameHost}
                 </span>
-                <span className="property__user-status">
-                  {status}
-                </span>
+
+                {pro}
+
               </div>
               <div className="property__description">
-                {description.map((text)=>(
-                  <p key={text} className="reviews__text">
-                    {text}
-                  </p>
-                ))}
+                <p className="reviews__text">{description}</p>
               </div>
             </div>
             <section className="property__reviews reviews">
@@ -125,8 +122,8 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
                             <span className="visually-hidden">Rating</span>
                           </div>
                         </div>
-                        {text.map((item: any)=>(
-                          <p key={item.id} className="reviews__text">
+                        {text.map((item)=>(
+                          <p key={item} className="reviews__text">
                             {item}
                           </p>
                         ))}

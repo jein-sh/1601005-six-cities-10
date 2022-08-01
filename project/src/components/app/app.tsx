@@ -6,21 +6,28 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import ErrorPage from '../../pages/error-page/error-page';
 import PrivateRoute from '../private-route/private-route';
-import {Offers} from '../../types/offer';
+import {City, Offers} from '../../types/offer';
 import {Reviews} from '../../types/review';
+// import { useState } from 'react';
 
 type AppPageProps = {
   offers: Offers,
   reviews: Reviews,
+  city: City;
 }
 
-function App({offers, reviews}: AppPageProps): JSX.Element {
+function App({offers, reviews, city}: AppPageProps): JSX.Element {
+
+  // const [currentOffer, setCurrentOffer] = useState<Offer | undefined>(
+  //   undefined
+  // );
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage offers={offers} />}
+          element={<MainPage offers={offers} city={city}/>}
         />
         <Route
           path={AppRoute.Login}

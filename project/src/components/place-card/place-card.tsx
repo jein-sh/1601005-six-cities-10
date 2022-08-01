@@ -9,7 +9,7 @@ type PlaceCardProps = {
 
 function PlaceCard({offer, isActive, onCardMouseMove}: PlaceCardProps): JSX.Element {
 
-  const {id, price, name, ratingFull, type, images, isPremium} = offer;
+  const {id, price, title, ratingFull, type, previewImage, isPremium} = offer;
   const starsFull = String(ratingFull * 100 / 5);
   const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
 
@@ -20,7 +20,7 @@ function PlaceCard({offer, isActive, onCardMouseMove}: PlaceCardProps): JSX.Elem
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#todo">
-          <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -43,7 +43,7 @@ function PlaceCard({offer, isActive, onCardMouseMove}: PlaceCardProps): JSX.Elem
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to = {`/offer/${id}`}>{name}</Link>
+          <Link to = {`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

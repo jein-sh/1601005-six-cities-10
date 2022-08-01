@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
+import {city} from './mocks/city';
 import {offers} from './mocks/offers';
 import {reviews} from './mocks/reviews';
 
@@ -13,6 +14,7 @@ root.render(
     <App
       offers = {offers}
       reviews = {reviews}
+      city = {city}
     />
   </React.StrictMode>,
 );

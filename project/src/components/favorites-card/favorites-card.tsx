@@ -6,7 +6,7 @@ type FavoritesCardProps = {
 
 function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
 
-  const {price, name, ratingFull, type, images, isPremium} = offer;
+  const {price, title, ratingFull, type, images, isPremium} = offer;
   const starsFull = String(ratingFull * 100 / 5);
   const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
 
@@ -40,7 +40,7 @@ function FavoritesCard({offer}: FavoritesCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#todo">{name}</a>
+          <a href="#todo">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
