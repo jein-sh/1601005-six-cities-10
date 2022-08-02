@@ -5,9 +5,9 @@ export const offers: Offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 0,
-        longitude: 0,
-        zoom: 10,
+        latitude: 52.390955394,
+        longitude: 4.8530966640,
+        zoom: 20,
       },
       nameCity: 'Amsterdam',
     },
@@ -26,7 +26,7 @@ export const offers: Offers = [
     location: {
       latitude: 52.3909553943508,
       longitude: 4.85309666406198,
-      zoom: 10,
+      zoom: 20,
     },
     maxAdults: 4,
     previewImage: 'img/apartment-01.jpg',
@@ -39,9 +39,9 @@ export const offers: Offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 0,
-        longitude: 0,
-        zoom: 10,
+        latitude: 52.390955394,
+        longitude: 4.8530966640,
+        zoom: 20,
       },
       nameCity: 'Amsterdam',
     },
@@ -58,9 +58,9 @@ export const offers: Offers = [
     isFavorite: true,
     isPremium: false,
     location: {
-      latitude: 52.369553943508,
+      latitude: 52.3609553943508,
       longitude: 4.85309666406198,
-      zoom: 10,
+      zoom: 20,
     },
     maxAdults: 4,
     previewImage: 'img/room.jpg',
@@ -73,9 +73,9 @@ export const offers: Offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 0,
-        longitude: 0,
-        zoom: 10,
+        latitude: 52.390955394,
+        longitude: 4.8530966640,
+        zoom: 20,
       },
       nameCity: 'Amsterdam',
     },
@@ -94,7 +94,7 @@ export const offers: Offers = [
     location: {
       latitude: 52.3909553943508,
       longitude: 4.929309666406198,
-      zoom: 10,
+      zoom: 20,
     },
     maxAdults: 4,
     previewImage: 'img/apartment-02.jpg',
@@ -107,9 +107,9 @@ export const offers: Offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 0,
-        longitude: 0,
-        zoom: 10,
+        latitude: 52.390955394,
+        longitude: 4.8530966640,
+        zoom: 20,
       },
       nameCity: 'Amsterdam',
     },
@@ -128,7 +128,7 @@ export const offers: Offers = [
     location: {
       latitude: 52.3809553943508,
       longitude: 4.939309666406198,
-      zoom: 10,
+      zoom: 20,
     },
     maxAdults: 4,
     previewImage: 'img/apartment-03.jpg',
@@ -141,9 +141,9 @@ export const offers: Offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 0,
-        longitude: 0,
-        zoom: 10,
+        latitude: 52.390955394,
+        longitude: 4.8530966640,
+        zoom: 20,
       },
       nameCity: 'Amsterdam',
     },
@@ -161,8 +161,8 @@ export const offers: Offers = [
     isPremium: false,
     location: {
       latitude: 52.369553943508,
-      longitude: 4.85309666406198,
-      zoom: 10,
+      longitude: 4.85309866406198,
+      zoom: 20,
     },
     maxAdults: 4,
     previewImage: 'img/room.jpg',

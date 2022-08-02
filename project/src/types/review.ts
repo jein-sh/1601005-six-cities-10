@@ -1,10 +1,14 @@
 export type Review = {
+  comment: string,
+  date: string,
   id: number,
-  author: string,
-  avatar: string,
   rating: number,
-  text: string[],
-  date: number,
+  user: {
+    avatarUrl: string
+    id: number
+    isPro: boolean
+    name: string
+  }
 }
 
 export type Reviews = Review[]

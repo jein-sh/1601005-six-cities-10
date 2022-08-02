@@ -67,11 +67,11 @@ function MainPage({offers, city}: MainPageProps): JSX.Element {
                 <li className="places__option" tabIndex={0}>Top rated first</li>
               </ul>
             </form>
-            <OfferList offers= {offers} />
+            <OfferList offers= {offers} cardMods= {'cities'} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map">
-              <Map city= {city} offers= {offers} currentOffer={undefined}/>
+              <Map city= {city} offers= {offers} currentOffer={undefined} mapMods = 'main' />
             </section>
           </div>
         </div>

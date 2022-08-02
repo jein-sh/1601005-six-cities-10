@@ -1,4 +1,4 @@
-import FavoritesCard from '../../components/favorites-card/favorites-card';
+import OfferList from '../../components/offer-list/offer-list';
 import {Offers} from '../../types/offer';
 
 type FavoritesPageProps = {
@@ -6,6 +6,7 @@ type FavoritesPageProps = {
 }
 
 function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
+  const favoritesOffers = offers.slice(1,4);
   return (
     <main className="page__main page__main--favorites">
       <section className="favorites">
@@ -19,14 +20,9 @@ function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
                 </a>
               </div>
             </div>
-            <div className="favorites__places">
-              {offers.slice(0,2).map((offer) => {
-                const keyValue = offer.id;
-                return (
-                  <FavoritesCard key={keyValue} offer= {offer} />
-                );
-              })}
-            </div>
+
+            <OfferList offers={favoritesOffers} cardMods={'favorites'} />
+
           </li>
           <li className="favorites__locations-items">
             <div className="favorites__locations locations locations--current">
@@ -36,14 +32,9 @@ function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
                 </a>
               </div>
             </div>
-            <div className="favorites__places">
-              {offers.slice(3,4).map((offer) => {
-                const keyValue = offer.id;
-                return (
-                  <FavoritesCard key={keyValue} offer= {offer} />
-                );
-              })}
-            </div>
+
+            <OfferList offers={favoritesOffers} cardMods={'favorites'} />
+
           </li>
         </ul>
       </section>
