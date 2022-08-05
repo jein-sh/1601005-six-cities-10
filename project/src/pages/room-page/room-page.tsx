@@ -6,6 +6,7 @@ import ErrorPage from '../error-page/error-page';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import OfferList from '../../components/offer-list/offer-list';
+import { city } from '../../mocks/city';
 
 type RoomPageProps = {
   offers: Offers;
@@ -15,13 +16,14 @@ type RoomPageProps = {
 function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
   const params = useParams();
   const offer: Offer | undefined = offers.find((item) => item.id.toString() === params.id);
+
   const nearOffers = offers.slice(0,3);
 
   if (!offer) {
     return <ErrorPage />;
   }
 
-  const {price, title, ratingFull, images, isPremium, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}, city} = offer;
+  const {price, title, ratingFull, images, isPremium, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}} = offer;
   const starsFull = String(ratingFull * 100 / 5);
   const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
   const pro = isPro ? <span className="property__user-status"></span> : null;
@@ -112,7 +114,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
         </div>
         <section className="property__map map">
 
-          <Map city= {city} offers= {nearOffers} currentOffer={offer} mapMods = {'big'} />
+          <Map city= {city} offers= {nearOffers} currentOffer={undefined} mapMods = {'big'} />
 
         </section>
       </section>
@@ -120,7 +122,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-          <OfferList offers={nearOffers} cardMods={'near-places'} />
+          <OfferList offers={nearOffers} cardMods={'near-places'} updateCurrentOffer={() => (undefined)}/>
 
         </section>
       </div>

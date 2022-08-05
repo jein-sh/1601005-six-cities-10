@@ -3,12 +3,11 @@ import {Offer} from '../../types/offer';
 
 type PlaceCardProps = {
   offer: Offer;
-  isActive: boolean;
-  onCardMouseMove: ()=> void;
+  updateCurrentOffer: (offer: Offer | undefined)=> void;
   cardMods: string;
 }
 
-function PlaceCard({offer, isActive, onCardMouseMove, cardMods}: PlaceCardProps): JSX.Element {
+function PlaceCard({offer, updateCurrentOffer, cardMods}: PlaceCardProps): JSX.Element {
 
   const {id, price, title, ratingFull, type, previewImage, isPremium} = offer;
   const starsFull = String(ratingFull * 100 / 5);
@@ -16,6 +15,10 @@ function PlaceCard({offer, isActive, onCardMouseMove, cardMods}: PlaceCardProps)
   const articleClass = `${cardMods}__card plase-card`;
   const imageClass = `${cardMods}__image-wrapper place-card__image-wrapper`;
   const infoClass = cardMods === 'favorites' ? 'favorites__card-info place-card__info' : 'place-card__info';
+
+  const onCardMouseMove = () => {
+    updateCurrentOffer(offer);
+  };
 
   return (
     <article className={articleClass} onMouseMove={onCardMouseMove}>

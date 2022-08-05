@@ -1,15 +1,13 @@
-import { useState } from 'react';
-import {Offers} from '../../types/offer';
+import {Offer, Offers} from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 
 type OfferListProps = {
   offers: Offers;
   cardMods: string;
+  updateCurrentOffer: (offer : Offer | undefined) => void;
 }
 
-function OfferList({offers, cardMods}: OfferListProps): JSX.Element {
-
-  const [activeCard, setActiveCard] = useState<string | undefined>(undefined);
+function OfferList({offers, cardMods, updateCurrentOffer}: OfferListProps): JSX.Element {
 
   let listClass : string;
 
@@ -30,8 +28,7 @@ function OfferList({offers, cardMods}: OfferListProps): JSX.Element {
           <PlaceCard
             key={keyValue}
             offer={offer}
-            isActive={keyValue === activeCard}
-            onCardMouseMove ={ () => setActiveCard(keyValue)}
+            updateCurrentOffer = {() => updateCurrentOffer(offer)}
             cardMods={cardMods}
           />
         );

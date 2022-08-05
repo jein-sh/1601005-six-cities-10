@@ -8,7 +8,6 @@ import ErrorPage from '../../pages/error-page/error-page';
 import PrivateRoute from '../private-route/private-route';
 import {City, Offers} from '../../types/offer';
 import {Reviews} from '../../types/review';
-// import { useState } from 'react';
 
 type AppPageProps = {
   offers: Offers,
@@ -18,16 +17,12 @@ type AppPageProps = {
 
 function App({offers, reviews, city}: AppPageProps): JSX.Element {
 
-  // const [currentOffer, setCurrentOffer] = useState<Offer | undefined>(
-  //   undefined
-  // );
-
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage offers={offers} city={city}/>}
+          element={<MainPage offers={offers} city={city} />}
         />
         <Route
           path={AppRoute.Login}

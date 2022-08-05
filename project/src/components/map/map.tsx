@@ -1,9 +1,11 @@
 import {useRef, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import {Icon, Marker} from 'leaflet';
 import useMap from '../../hooks/useMap/useMap';
 import 'leaflet/dist/leaflet.css';
 import { City, Offer, Offers } from '../../types/offer';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+
 
 type MapProps = {
   city: City;
@@ -27,9 +29,12 @@ const currentCustomIcon = new Icon({
 function Map({city, offers, currentOffer, mapMods}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (map) {
+      const markers: Marker[] = [];
+
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
@@ -37,21 +42,21 @@ function Map({city, offers, currentOffer, mapMods}: MapProps): JSX.Element {
         }, {
           icon: defaultCustomIcon,
         });
+        marker
+          .setIcon(
+            offer === currentOffer ? currentCustomIcon : defaultCustomIcon
+          )
+          .addTo(map);
 
-        marker.addTo(map);
+        markers.push(marker);
+
+        marker.on('click', () => navigate (`/offer/${offer.id}`));
       });
 
-      if(currentOffer) {
-        const currentMarker = new Marker({
-          lat: currentOffer.location.latitude,
-          lng: currentOffer.location.longitude
-        }, {
-          icon: currentCustomIcon,
-        });
-
-        currentMarker.addTo(map);
-      }
+      return () => markers.forEach((marker) => map.removeLayer(marker));
     }
+
+
   }, [map, offers, currentOffer]);
 
   if (mapMods === 'big') {

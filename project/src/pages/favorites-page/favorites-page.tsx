@@ -21,7 +21,7 @@ function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
               </div>
             </div>
 
-            <OfferList offers={favoritesOffers} cardMods={'favorites'} />
+            <OfferList offers={favoritesOffers} cardMods={'favorites'} updateCurrentOffer={() => (undefined)} />
 
           </li>
           <li className="favorites__locations-items">
@@ -33,7 +33,7 @@ function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
               </div>
             </div>
 
-            <OfferList offers={favoritesOffers} cardMods={'favorites'} />
+            <OfferList offers={favoritesOffers} cardMods={'favorites'} updateCurrentOffer={() => (undefined)} />
 
           </li>
         </ul>
