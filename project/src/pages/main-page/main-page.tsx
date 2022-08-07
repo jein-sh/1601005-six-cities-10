@@ -1,11 +1,21 @@
 import OfferList from '../../components/offer-list/offer-list';
-import {Offers} from '../../types/offer';
+import Map from '../../components/map/map';
+import {City, Offer, Offers} from '../../types/offer';
+import { useState } from 'react';
 
 type MainPageProps = {
   offers: Offers;
+  city: City;
 }
 
-function MainPage({offers}: MainPageProps): JSX.Element {
+function MainPage({offers, city}: MainPageProps): JSX.Element {
+
+  const [currentOffer, setCurrentOffer] = useState<Offer | undefined>(undefined);
+
+  const updateCurrentOffer = (offer : Offer | undefined) => {
+    setCurrentOffer(offer);
+  };
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -65,10 +75,12 @@ function MainPage({offers}: MainPageProps): JSX.Element {
                 <li className="places__option" tabIndex={0}>Top rated first</li>
               </ul>
             </form>
-            <OfferList offers= {offers} />
+            <OfferList offers= {offers} cardMods= {'cities'} updateCurrentOffer={updateCurrentOffer} />
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <section className="cities__map map">
+              <Map city= {city} offers= {offers} currentOffer={currentOffer} mapMods = {'main'} />
+            </section>
           </div>
         </div>
       </div>

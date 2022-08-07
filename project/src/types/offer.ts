@@ -1,28 +1,40 @@
-export type Features = {
-  entire: string,
-  bedroom: number,
-  adults: number,
+export type Host = {
+  avatarUrl: string,
+  id: number,
+  isPro: boolean,
+  nameHost: string,
 }
 
-export type Host = {
-  nameHost: string,
-  status: string,
-  avatarHost: string,
-  description: string[]
+export type City = {
+  location: {
+    latitude: number,
+    longitude: number,
+    zoom: number,
+  }
+  nameCity: string,
 }
 
 export type Offer = {
-  id: string,
-  city: string,
-  price: number,
-  name: string,
-  ratingFull: number,
-  type: string,
-  images: string[],
-  features: Features,
-  inside: string[],
-  isPremium: boolean,
+  bedrooms: number,
+  city: City,
+  description: string,
+  goods: string[],
   host: Host,
-};
+  id: number,
+  images: string[],
+  isFavorite: boolean,
+  isPremium: boolean,
+  location: {
+    latitude: number,
+    longitude: number,
+    zoom: number,
+  }
+  maxAdults: number,
+  previewImage: string,
+  price: number,
+  ratingFull: number,
+  title: string,
+  type: string,
+}
 
 export type Offers = Offer[]
