@@ -114,7 +114,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
         </div>
         <section className="property__map map">
 
-          <Map city= {city} offers= {nearOffers} currentOffer={undefined} mapMods = {'big'} />
+          <Map city= {city} offers= {nearOffers} mapMods = {'big'} />
 
         </section>
       </section>
@@ -122,7 +122,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-          <OfferList offers={nearOffers} cardMods={'near-places'} updateCurrentOffer={() => (undefined)}/>
+          <OfferList offers={nearOffers} cardMods={'near-places'} />
 
         </section>
       </div>

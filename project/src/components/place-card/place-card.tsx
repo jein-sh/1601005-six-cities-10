@@ -3,7 +3,7 @@ import {Offer} from '../../types/offer';
 
 type PlaceCardProps = {
   offer: Offer;
-  updateCurrentOffer: (offer: Offer | undefined)=> void;
+  updateCurrentOffer?: (offer: Offer | undefined)=> void;
   cardMods: string;
 }
 
@@ -17,7 +17,9 @@ function PlaceCard({offer, updateCurrentOffer, cardMods}: PlaceCardProps): JSX.E
   const infoClass = cardMods === 'favorites' ? 'favorites__card-info place-card__info' : 'place-card__info';
 
   const onCardMouseMove = () => {
-    updateCurrentOffer(offer);
+    if (updateCurrentOffer) {
+      updateCurrentOffer(offer);
+    }
   };
 
   return (

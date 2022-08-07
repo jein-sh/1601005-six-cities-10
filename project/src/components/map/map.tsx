@@ -10,7 +10,7 @@ import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 type MapProps = {
   city: City;
   offers: Offers;
-  currentOffer: Offer | undefined;
+  currentOffer?: Offer | undefined;
   mapMods: string;
 };
 

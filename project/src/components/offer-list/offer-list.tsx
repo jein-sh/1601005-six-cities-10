@@ -4,7 +4,7 @@ import PlaceCard from '../place-card/place-card';
 type OfferListProps = {
   offers: Offers;
   cardMods: string;
-  updateCurrentOffer: (offer : Offer | undefined) => void;
+  updateCurrentOffer?: (offer : Offer | undefined) => void;
 }
 
 function OfferList({offers, cardMods, updateCurrentOffer}: OfferListProps): JSX.Element {
@@ -28,7 +28,7 @@ function OfferList({offers, cardMods, updateCurrentOffer}: OfferListProps): JSX.
           <PlaceCard
             key={keyValue}
             offer={offer}
-            updateCurrentOffer = {() => updateCurrentOffer(offer)}
+            updateCurrentOffer={updateCurrentOffer ? () => updateCurrentOffer(offer) : undefined}
             cardMods={cardMods}
           />
         );
