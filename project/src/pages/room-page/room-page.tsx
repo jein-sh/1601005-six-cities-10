@@ -6,7 +6,6 @@ import ErrorPage from '../error-page/error-page';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import OfferList from '../../components/offer-list/offer-list';
-import { city } from '../../mocks/city';
 
 type RoomPageProps = {
   offers: Offers;
@@ -23,7 +22,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
     return <ErrorPage />;
   }
 
-  const {price, title, ratingFull, images, isPremium, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}} = offer;
+  const {price, title, ratingFull, images, isPremium, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}, city} = offer;
   const starsFull = String(ratingFull * 100 / 5);
   const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
   const pro = isPro ? <span className="property__user-status"></span> : null;

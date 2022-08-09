@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import {Icon, Marker} from 'leaflet';
 import useMap from '../../hooks/useMap/useMap';
 import 'leaflet/dist/leaflet.css';
-import { City, Offer, Offers } from '../../types/offer';
+import { Offer, Offers } from '../../types/offer';
+import { City } from '../../types/city';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 
 

@@ -37,13 +37,13 @@ export const offers: Offers = [
   },
   {
     bedrooms: 3,
-    city: {
+    city:   {
       location: {
-        latitude: 52.390955394,
-        longitude: 4.8530966640,
+        latitude:  48.8534100,
+        longitude: 2.3488000,
         zoom: 20,
       },
-      nameCity: 'Amsterdam',
+      nameCity: 'Paris',
     },
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
     goods: ['WiFi', 'Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
@@ -58,8 +58,8 @@ export const offers: Offers = [
     isFavorite: true,
     isPremium: false,
     location: {
-      latitude: 52.3609553943508,
-      longitude: 4.85309666406198,
+      latitude:  48.8534100,
+      longitude: 2.3488000,
       zoom: 20,
     },
     maxAdults: 4,
@@ -73,11 +73,11 @@ export const offers: Offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 52.390955394,
-        longitude: 4.8530966640,
+        latitude: 45.5786200,
+        longitude: 9.9418000,
         zoom: 20,
       },
-      nameCity: 'Amsterdam',
+      nameCity: 'Cologne',
     },
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
     goods: ['WiFi', 'Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
@@ -92,8 +92,8 @@ export const offers: Offers = [
     isFavorite: false,
     isPremium: false,
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.929309666406198,
+      latitude: 45.5786200,
+      longitude: 9.9418000,
       zoom: 20,
     },
     maxAdults: 4,

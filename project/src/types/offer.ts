@@ -1,17 +1,10 @@
+import { City } from "./city"
+
 export type Host = {
   avatarUrl: string,
   id: number,
   isPro: boolean,
   nameHost: string,
-}
-
-export type City = {
-  location: {
-    latitude: number,
-    longitude: number,
-    zoom: number,
-  }
-  nameCity: string,
 }
 
 export type Offer = {
