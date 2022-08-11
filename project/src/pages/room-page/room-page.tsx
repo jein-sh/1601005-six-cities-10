@@ -22,7 +22,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
     return <ErrorPage />;
   }
 
-  const {price, title, ratingFull, images, isPremium, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}, city} = offer;
+  const {price, title, ratingFull, images, isPremium, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}} = offer;
   const starsFull = String(ratingFull * 100 / 5);
   const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
   const pro = isPro ? <span className="property__user-status"></span> : null;
@@ -113,7 +113,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
         </div>
         <section className="property__map map">
 
-          <Map city= {city} offers= {nearOffers} mapMods = {'big'} />
+          <Map offers= {nearOffers} mapMods = {'big'} />
 
         </section>
       </section>

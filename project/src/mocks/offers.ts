@@ -7,7 +7,7 @@ export const offers: Offers = [
       location: {
         latitude: 52.390955394,
         longitude: 4.8530966640,
-        zoom: 20,
+        zoom: 10,
       },
       nameCity: 'Amsterdam',
     },
@@ -26,7 +26,7 @@ export const offers: Offers = [
     location: {
       latitude: 52.3909553943508,
       longitude: 4.85309666406198,
-      zoom: 20,
+      zoom: 10,
     },
     maxAdults: 4,
     previewImage: 'img/apartment-01.jpg',
@@ -41,7 +41,7 @@ export const offers: Offers = [
       location: {
         latitude:  48.8534100,
         longitude: 2.3488000,
-        zoom: 20,
+        zoom: 10,
       },
       nameCity: 'Paris',
     },
@@ -60,7 +60,7 @@ export const offers: Offers = [
     location: {
       latitude:  48.8534100,
       longitude: 2.3488000,
-      zoom: 20,
+      zoom: 10,
     },
     maxAdults: 4,
     previewImage: 'img/room.jpg',
@@ -73,9 +73,9 @@ export const offers: Offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 45.5786200,
-        longitude: 9.9418000,
-        zoom: 20,
+        latitude: 50.9333300,
+        longitude: 6.9500000,
+        zoom: 10,
       },
       nameCity: 'Cologne',
     },
@@ -92,9 +92,9 @@ export const offers: Offers = [
     isFavorite: false,
     isPremium: false,
     location: {
-      latitude: 45.5786200,
-      longitude: 9.9418000,
-      zoom: 20,
+      latitude: 50.9333300,
+      longitude: 6.9500000,
+      zoom: 10,
     },
     maxAdults: 4,
     previewImage: 'img/apartment-02.jpg',
@@ -109,7 +109,7 @@ export const offers: Offers = [
       location: {
         latitude: 52.390955394,
         longitude: 4.8530966640,
-        zoom: 20,
+        zoom: 10,
       },
       nameCity: 'Amsterdam',
     },
@@ -128,7 +128,7 @@ export const offers: Offers = [
     location: {
       latitude: 52.3809553943508,
       longitude: 4.939309666406198,
-      zoom: 20,
+      zoom: 10,
     },
     maxAdults: 4,
     previewImage: 'img/apartment-03.jpg',
@@ -143,7 +143,7 @@ export const offers: Offers = [
       location: {
         latitude: 52.390955394,
         longitude: 4.8530966640,
-        zoom: 20,
+        zoom: 10,
       },
       nameCity: 'Amsterdam',
     },
@@ -162,7 +162,7 @@ export const offers: Offers = [
     location: {
       latitude: 52.369553943508,
       longitude: 4.85309866406198,
-      zoom: 20,
+      zoom: 10,
     },
     maxAdults: 4,
     previewImage: 'img/room.jpg',

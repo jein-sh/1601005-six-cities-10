@@ -40,7 +40,6 @@ const reducer = createReducer(initialState, (builder) => {
         default:
           state.offers = getFilterOffers(offers, state.city);
       }
-
     });
 });
 

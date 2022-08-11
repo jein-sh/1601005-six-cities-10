@@ -65,7 +65,7 @@ function MainPage(): JSX.Element {
             <div className="cities__right-section">
               <section className="cities__map map">
 
-                <Map city= {city} offers= {offers} currentOffer={currentOffer} mapMods = {'main'} />
+                <Map offers= {offers} currentOffer={currentOffer} mapMods = {'main'} />
 
               </section>
             </div>

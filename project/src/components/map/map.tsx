@@ -1,15 +1,14 @@
 import {useRef, useEffect} from 'react';
+import {useAppSelector} from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import {Icon, Marker} from 'leaflet';
 import useMap from '../../hooks/useMap/useMap';
 import 'leaflet/dist/leaflet.css';
 import { Offer, Offers } from '../../types/offer';
-import { City } from '../../types/city';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 
 
 type MapProps = {
-  city: City;
   offers: Offers;
   currentOffer?: Offer | undefined;
   mapMods: string;
@@ -27,8 +26,9 @@ const currentCustomIcon = new Icon({
   iconAnchor: [14, 39]
 });
 
-function Map({city, offers, currentOffer, mapMods}: MapProps): JSX.Element {
+function Map({offers, currentOffer, mapMods}: MapProps): JSX.Element {
   const mapRef = useRef(null);
+  const city = useAppSelector((state) => state.city);
   const map = useMap(mapRef, city);
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ function Map({city, offers, currentOffer, mapMods}: MapProps): JSX.Element {
     }
 
 
-  }, [map, offers, currentOffer]);
+  }, [map, city, offers, currentOffer]);
 
   if (mapMods === 'big') {
     return <div style={{height: '579px'}} ref={mapRef}></div>;
