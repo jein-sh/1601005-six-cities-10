@@ -6,23 +6,22 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import ErrorPage from '../../pages/error-page/error-page';
 import PrivateRoute from '../private-route/private-route';
-import {City, Offers} from '../../types/offer';
+import {Offers} from '../../types/offer';
 import {Reviews} from '../../types/review';
 
 type AppPageProps = {
   offers: Offers,
   reviews: Reviews,
-  city: City;
 }
 
-function App({offers, reviews, city}: AppPageProps): JSX.Element {
+function App({offers, reviews}: AppPageProps): JSX.Element {
 
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage offers={offers} city={city} />}
+          element={<MainPage />}
         />
         <Route
           path={AppRoute.Login}

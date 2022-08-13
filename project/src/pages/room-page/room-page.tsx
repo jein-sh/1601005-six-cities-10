@@ -6,7 +6,6 @@ import ErrorPage from '../error-page/error-page';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import OfferList from '../../components/offer-list/offer-list';
-import { city } from '../../mocks/city';
 
 type RoomPageProps = {
   offers: Offers;
@@ -114,7 +113,7 @@ function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
         </div>
         <section className="property__map map">
 
-          <Map city= {city} offers= {nearOffers} mapMods = {'big'} />
+          <Map offers= {nearOffers} mapMods = {'big'} />
 
         </section>
       </section>
