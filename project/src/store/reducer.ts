@@ -1,23 +1,41 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { DEFAULT_CITY, DEFAULT_SORT, SortType} from '../const';
-import { offers } from '../mocks/offers';
+import { DEFAULT_CITY } from '../cities';
+import { DEFAULT_SORT, SortType} from '../const';
+import { City } from '../types/city';
+import { Offers } from '../types/offer';
 import { getFilterOffers, sortLowToHigt, sortHigtToLow, sortRating } from '../untils';
-import {filterOffers, sortChoice, sortOffers, сityChoice} from './action';
+import {filterOffers, loadOffers, setDataLoadedStatus, sortChoice, sortOffers, сityChoice} from './action';
 
-const initialState = {
+type InitalState = {
+  city: City,
+  sort: string,
+  isDataLoaded: boolean,
+  allOffers: Offers,
+  offers: Offers,
+}
+
+const initialState : InitalState = {
   city: DEFAULT_CITY,
   sort: DEFAULT_SORT,
-  offers: getFilterOffers(offers, DEFAULT_CITY),
+  isDataLoaded: true,
+  allOffers: [],
+  offers: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(loadOffers, (state, action) => {
+      state.allOffers = action.payload;
+    })
+    .addCase(setDataLoadedStatus, (state, action) => {
+      state.isDataLoaded = action.payload;
+    })
     .addCase(сityChoice, (state, action) => {
       const {currentCity} = action.payload;
       state.city = currentCity;
     })
     .addCase(filterOffers, (state) => {
-      state.offers = getFilterOffers(offers, state.city);
+      state.offers = getFilterOffers(state.allOffers, state.city);
     })
     .addCase(sortChoice, (state, action) => {
       const {currentSort} = action.payload;
@@ -26,7 +44,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(sortOffers, (state) => {
       switch (state.sort) {
         case SortType.Popular:
-          state.offers = getFilterOffers(offers, state.city);
+          state.offers = getFilterOffers(state.offers, state.city);
           break;
         case SortType.LowToHigh:
           state.offers = state.offers.sort(sortLowToHigt);
@@ -38,7 +56,7 @@ const reducer = createReducer(initialState, (builder) => {
           state.offers = state.offers.sort(sortRating);
           break;
         default:
-          state.offers = getFilterOffers(offers, state.city);
+          state.offers = getFilterOffers(state.offers, state.city);
       }
     });
 });

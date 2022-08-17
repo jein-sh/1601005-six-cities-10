@@ -4,7 +4,7 @@ export type City = {
     longitude: number,
     zoom: number,
   }
-  nameCity: string,
+  name: string,
 }
 
 export type Cities = City[]
