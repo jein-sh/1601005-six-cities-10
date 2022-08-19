@@ -36,13 +36,13 @@ function App(): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <FavoritesPage offers={[]}/>
+              <FavoritesPage />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Room}
-          element={<RoomPage offers={[]} reviews={[]} />}
+          element={<RoomPage />}
         />
         <Route
           path="*"
