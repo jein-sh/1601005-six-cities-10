@@ -7,12 +7,9 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import OfferList from '../../components/offer-list/offer-list';
 
-type RoomPageProps = {
-  offers: Offers;
-  reviews: Reviews;
-}
-
-function RoomPage({offers, reviews}: RoomPageProps): JSX.Element {
+function RoomPage(): JSX.Element {
+  const offers: Offers = []; // пока не настроена связь с сервером
+  const reviews : Reviews = []; // пока не настроена связь с сервером
   const params = useParams();
   const offer: Offer | undefined = offers.find((item) => item.id.toString() === params.id);
 

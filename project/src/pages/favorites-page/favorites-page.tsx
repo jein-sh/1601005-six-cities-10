@@ -1,12 +1,8 @@
 import OfferList from '../../components/offer-list/offer-list';
 import {Offers} from '../../types/offer';
 
-type FavoritesPageProps = {
-  offers: Offers;
-}
-
-function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
-  const favoritesOffers = offers.slice(1,4);
+function FavoritesPage(): JSX.Element {
+  const favoritesOffers : Offers = []; // пока не настроена связь с сервером
   return (
     <main className="page__main page__main--favorites">
       <section className="favorites">

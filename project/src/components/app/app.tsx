@@ -6,15 +6,18 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import ErrorPage from '../../pages/error-page/error-page';
 import PrivateRoute from '../private-route/private-route';
-import {Offers} from '../../types/offer';
-import {Reviews} from '../../types/review';
+import LoadingPage from '../../pages/loading-page/loading-page';
+import { useAppSelector } from '../../hooks';
 
-type AppPageProps = {
-  offers: Offers,
-  reviews: Reviews,
-}
+function App(): JSX.Element {
 
-function App({offers, reviews}: AppPageProps): JSX.Element {
+  const {isDataLoaded} = useAppSelector((state) => state);
+
+  if (isDataLoaded) {
+    return (
+      <LoadingPage />
+    );
+  }
 
   return (
     <BrowserRouter>
@@ -33,13 +36,13 @@ function App({offers, reviews}: AppPageProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <FavoritesPage offers={offers} />
+              <FavoritesPage />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Room}
-          element={<RoomPage offers={offers} reviews={reviews}/>}
+          element={<RoomPage />}
         />
         <Route
           path="*"
