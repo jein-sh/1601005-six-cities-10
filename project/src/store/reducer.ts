@@ -26,7 +26,7 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loadOffers, (state, action) => {
       state.allOffers = action.payload;
-      state.isDataLoaded = true;
+      state.isDataLoaded = false;
       state.offers = getFilterOffers(state.allOffers, DEFAULT_CITY);
     })
     .addCase(setDataLoadedStatus, (state, action) => {
