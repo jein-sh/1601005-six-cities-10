@@ -1,9 +1,16 @@
-import {useState, ChangeEvent} from 'react';
+import {useState, ChangeEvent, FormEvent} from 'react';
+import { useAppDispatch } from '../../hooks';
+import { postCommentAction } from '../../store/api-actions';
 
-function FormComment(): JSX.Element {
+type FormCommentProps = {
+  id: number
+}
+
+function FormComment({id}: FormCommentProps): JSX.Element {
+  const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({
     rating: '',
-    review: '',
+    comment: '',
   });
 
   const formChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {
@@ -11,8 +18,18 @@ function FormComment(): JSX.Element {
     setFormData({...formData, [name]: value});
   };
 
+  const comment = formData.comment;
+  const rating = Number(formData.rating);
+
+  const onSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    dispatch(postCommentAction({id, comment, rating}));
+    setFormData({rating: '', comment: ''});
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" onSubmit={onSubmitForm} >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
 
@@ -66,8 +83,8 @@ function FormComment(): JSX.Element {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.review}
+      <textarea className="reviews__textarea form__textarea" id="comment" name="comment" placeholder="Tell how was your stay, what you like and what can be improved"
+        value={formData.comment}
         onChange={formChangeHandle}
       >
       </textarea>
@@ -75,7 +92,7 @@ function FormComment(): JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit">Submit</button>
       </div>
     </form>
   );

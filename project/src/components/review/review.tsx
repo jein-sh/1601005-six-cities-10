@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import {Review} from '../../types/review';
 
 type ReviewProps = {
@@ -9,6 +10,7 @@ function ReviewItem({review}: ReviewProps): JSX.Element {
   const {comment, date, rating, user: {avatarUrl, isPro, name}} = review;
   const stars = String(rating * 100 / 5);
   const pro = isPro ? <span className="property__user-status"></span> : null;
+  const humanizeDate = dayjs(date).format('MMMM YYYY');
 
   return (
     <li className="reviews__item">
@@ -29,7 +31,7 @@ function ReviewItem({review}: ReviewProps): JSX.Element {
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime="2019-04-24">{date}</time>
+        <time className="reviews__time" dateTime={date}>{humanizeDate}</time>
       </div>
     </li>
   );

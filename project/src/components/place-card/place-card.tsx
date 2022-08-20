@@ -1,5 +1,8 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyOffersAction } from '../../store/api-actions';
 import {Offer} from '../../types/offer';
+import BookmarkButton from '../bookmark-button/bookmark-button';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -11,6 +14,16 @@ function PlaceCard({offer, updateCurrentOffer, cardMods}: PlaceCardProps): JSX.E
 
   const {id, price, title, ratingFull, type, previewImage, isPremium, isFavorite} = offer;
   const starsFull = String(ratingFull * 100 / 5);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const onClickCardHandle = () => {
+    dispatch(fetchCurrentOfferAction(id));
+    dispatch(fetchNearbyOffersAction(id));
+    dispatch(fetchCommentsAction(id));
+    navigate(`/offer/${id}`);
+  };
 
   const onCardMouseMove = () => {
     if (updateCurrentOffer) {
@@ -34,12 +47,9 @@ function PlaceCard({offer, updateCurrentOffer, cardMods}: PlaceCardProps): JSX.E
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${isFavorite ? 'place-card__bookmark-button--active' : ''}`} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+
+          <BookmarkButton favorite = {isFavorite} id = {id} btnMods = {'place-card'}/>
+
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -48,7 +58,7 @@ function PlaceCard({offer, updateCurrentOffer, cardMods}: PlaceCardProps): JSX.E
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to = {`/offer/${id}`}>{title}</Link>
+          <a onClick = {onClickCardHandle}>{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
