@@ -1,4 +1,4 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import MainPage from '../../pages/main-page/main-page';
 import RoomPage from '../../pages/room-page/room-page';
@@ -8,6 +8,8 @@ import ErrorPage from '../../pages/error-page/error-page';
 import PrivateRoute from '../private-route/private-route';
 import LoadingPage from '../../pages/loading-page/loading-page';
 import { useAppSelector } from '../../hooks';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 function App(): JSX.Element {
 
@@ -20,7 +22,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -31,10 +33,10 @@ function App(): JSX.Element {
           element={<LoginPage />}
         />
         <Route
-          path={AppRoute.Favorites}
+          path={AppRoute.Favorite}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
               <FavoritesPage />
             </PrivateRoute>
@@ -49,7 +51,7 @@ function App(): JSX.Element {
           element={<ErrorPage />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
