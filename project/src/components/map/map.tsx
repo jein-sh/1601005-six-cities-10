@@ -6,6 +6,7 @@ import useMap from '../../hooks/useMap/useMap';
 import 'leaflet/dist/leaflet.css';
 import { Offer, Offers } from '../../types/offer';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+import { getCity } from '../../store/offers-data/selectors';
 
 
 type MapProps = {
@@ -28,7 +29,7 @@ const currentCustomIcon = new Icon({
 
 function Map({offers, currentOffer, mapMods}: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const city = useAppSelector((state) => state.city);
+  const city = useAppSelector(getCity);
   const map = useMap(mapRef, city);
   const navigate = useNavigate();
 

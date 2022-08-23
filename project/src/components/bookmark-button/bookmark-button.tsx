@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { checkFavoriteAction } from '../../store/api-actions';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useNavigate } from 'react-router-dom';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 type BookmarkButtonProps = {
   id: number;
@@ -13,7 +14,7 @@ type BookmarkButtonProps = {
 function BookmarkButton({id, favorite, btnMods}: BookmarkButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [isFavorite, setIsFavorite] = useState<boolean>(favorite);
 
   const onClickBookmarkHandle = () => {

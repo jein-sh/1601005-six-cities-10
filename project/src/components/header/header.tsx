@@ -1,12 +1,16 @@
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
+import { getFavorite } from '../../store/favorite/selectors';
+import { getAuthorizationStatus, getUserMail } from '../../store/user-process/selectors';
 
 function Header(): JSX.Element {
 
-  const {authorizationStatus, favorite, userMail} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const userMail = useAppSelector(getUserMail);
+  const favorite = useAppSelector(getFavorite);
   const dispatch = useAppDispatch();
 
   return (
@@ -51,4 +55,4 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header;
+export default memo(Header);
