@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {Offer, Offers} from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
 
@@ -37,4 +38,4 @@ function OfferList({offers, cardMods, updateCurrentOffer}: OfferListProps): JSX.
   );
 }
 
-export default OfferList;
+export default memo(OfferList);

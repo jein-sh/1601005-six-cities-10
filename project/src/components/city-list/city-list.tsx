@@ -2,6 +2,7 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {cities} from '../../cities';
 import { getCity } from '../../store/offers-data/selectors';
 import { сityChoice } from '../../store/offers-data/offers-data';
+import { memo } from 'react';
 
 function CityList(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -26,4 +27,4 @@ function CityList(): JSX.Element {
   );
 }
 
-export default CityList;
+export default memo(CityList);

@@ -54,7 +54,7 @@ function MainPage(): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{`${offers.length} places to stay in ${city.name}`}</b>
 
-              <SortList sortType='' updateSortType={updateSortType}/>
+              <SortList sortType={sortType} updateSortType={updateSortType}/>
 
               <OfferList offers= {sortedOffers} cardMods= {'cities'} updateCurrentOffer={updateCurrentOffer} />
 
