@@ -3,12 +3,23 @@ import { cities } from '../../cities';
 import Header from '../../components/header/header';
 import OfferList from '../../components/offer-list/offer-list';
 import { AppRoute } from '../../const';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getFavorite, getFavoriteLoadedStatus } from '../../store/favorite/selectors';
+import { сityChoice } from '../../store/offers-data/offers-data';
 import { getFilterOffers } from '../../untils';
+import LoadingPage from '../loading-page/loading-page';
 
 function FavoritesPage(): JSX.Element {
-  const favorite = useAppSelector((state) => state.favorite);
+  const favorite = useAppSelector(getFavorite);
+  const isFavoriteLoaded = useAppSelector(getFavoriteLoadedStatus);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  if (isFavoriteLoaded) {
+    return (
+      <LoadingPage />
+    );
+  }
 
   return (
     <div className={`page ${favorite.length === 0 ? 'page--favorites-empty' : ''}`}>
@@ -29,7 +40,7 @@ function FavoritesPage(): JSX.Element {
                       <li className="favorites__locations-items" key={city.name}>
                         <div className="favorites__locations locations locations--current">
                           <div className="locations__item">
-                            <a className="locations__item-link" href="#todo">
+                            <a className="locations__item-link" onClick={() => {navigate(AppRoute.Main); dispatch(сityChoice({currentCity: city}));}}>
                               <span>{city.name}</span>
                             </a>
                           </div>

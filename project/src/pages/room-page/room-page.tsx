@@ -1,16 +1,28 @@
-import FormComment from '../../components/form-comment/form-comment';
+import LoadingPage from '../loading-page/loading-page';
 import ErrorPage from '../error-page/error-page';
+import Header from '../../components/header/header';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import ReviewsList from '../../components/reviews-list/reviews-list';
+import FormComment from '../../components/form-comment/form-comment';
 import Map from '../../components/map/map';
 import OfferList from '../../components/offer-list/offer-list';
 import { useAppSelector } from '../../hooks';
-import Header from '../../components/header/header';
 import { AuthorizationStatus } from '../../const';
-import BookmarkButton from '../../components/bookmark-button/bookmark-button';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getComments, getCurrentOffer, getNearbyOffers, getOfferLoadedStatus } from '../../store/room-data/selectors';
 
 function RoomPage(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+  const isOfferLoaded = useAppSelector(getOfferLoadedStatus);
+  const comments = useAppSelector(getComments);
 
-  const {authorizationStatus, currentOffer, nearbyOffers, comments} = useAppSelector((state) => state);
+  if (isOfferLoaded) {
+    return (
+      <LoadingPage />
+    );
+  }
 
   if (!currentOffer) {
     return <ErrorPage />;

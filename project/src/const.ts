@@ -31,3 +31,10 @@ export enum SortType {
   HighToLow = 'Price: high to low',
   TopRatedFirst = 'Top rated first'
 }
+
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
+  Room = 'ROOM',
+  Favorite = 'FAVORITE'
+}

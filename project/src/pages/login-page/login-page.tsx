@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { AuthData } from '../../types/auth-data';
+import { AuthData } from '../../types/api-data';
 
 function LoginPage(): JSX.Element {
 

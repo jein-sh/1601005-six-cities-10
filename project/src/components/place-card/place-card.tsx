@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import { fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyOffersAction } from '../../store/api-actions';
@@ -66,4 +67,4 @@ function PlaceCard({offer, updateCurrentOffer, cardMods}: PlaceCardProps): JSX.E
   );
 }
 
-export default PlaceCard;
+export default memo(PlaceCard);
