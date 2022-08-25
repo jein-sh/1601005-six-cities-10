@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import { fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyOffersAction } from '../../store/api-actions';
 import {Offer} from '../../types/offer';
@@ -13,17 +13,15 @@ type PlaceCardProps = {
 
 function PlaceCard({offer, updateCurrentOffer, cardMods}: PlaceCardProps): JSX.Element {
 
-  const {id, price, title, ratingFull, type, previewImage, isPremium, isFavorite} = offer;
-  const starsFull = String(ratingFull * 100 / 5);
+  const {id, price, title, rating, type, previewImage, isPremium, isFavorite} = offer;
+  const starsFull = String(rating * 100 / 5);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const onClickCardHandle = () => {
     dispatch(fetchCurrentOfferAction(id));
     dispatch(fetchNearbyOffersAction(id));
     dispatch(fetchCommentsAction(id));
-    navigate(`/offer/${id}`);
   };
 
   const onCardMouseMove = () => {
@@ -39,7 +37,7 @@ function PlaceCard({offer, updateCurrentOffer, cardMods}: PlaceCardProps): JSX.E
 
       <div className={`${cardMods}__image-wrapper place-card__image-wrapper`}>
         <a href="#todo">
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
         </a>
       </div>
       <div className={`place-card__info ${cardMods === 'favorites' ? 'favorites__card-info' : ''}`} >
@@ -59,7 +57,7 @@ function PlaceCard({offer, updateCurrentOffer, cardMods}: PlaceCardProps): JSX.E
           </div>
         </div>
         <h2 className="place-card__name">
-          <a onClick = {onClickCardHandle}>{title}</a>
+          <Link to={`/offer/${id}`} onClick = {onClickCardHandle}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { DEFAULT_CITY } from '../../cities';
-import {NameSpace} from '../../const';
+import {NameSpace, SortType} from '../../const';
 import {OffersData} from '../../types/state';
 import {fetchOffersAction} from '../api-actions';
 
@@ -9,6 +9,7 @@ const initialState: OffersData = {
   isDataLoaded:false,
   city: DEFAULT_CITY,
   offers: [],
+  sortType: SortType.Popular,
 };
 
 export const offersData = createSlice({
@@ -18,6 +19,10 @@ export const offersData = createSlice({
     сityChoice: (state, action) => {
       const {currentCity} = action.payload;
       state.city = currentCity;
+    },
+    sortChoice: (state, action) => {
+      const {currentSortType} = action.payload;
+      state.sortType = currentSortType;
     }
   },
   extraReducers(builder) {
@@ -32,4 +37,4 @@ export const offersData = createSlice({
   }
 });
 
-export const {сityChoice} = offersData.actions;
+export const {сityChoice, sortChoice} = offersData.actions;

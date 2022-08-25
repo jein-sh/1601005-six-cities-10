@@ -1,5 +1,5 @@
 import {useRef, useEffect, memo} from 'react';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import {Icon, Marker} from 'leaflet';
 import useMap from '../../hooks/useMap/useMap';
@@ -7,11 +7,12 @@ import 'leaflet/dist/leaflet.css';
 import { Offer, Offers } from '../../types/offer';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { getCity } from '../../store/offers-data/selectors';
-
+import { fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyOffersAction } from '../../store/api-actions';
 
 type MapProps = {
   offers: Offers;
-  currentOffer?: Offer | undefined;
+  currentOffer?: Offer;
+  mainOffer?: Offer;
   mapMods: string;
 };
 
@@ -27,11 +28,12 @@ const currentCustomIcon = new Icon({
   iconAnchor: [14, 39]
 });
 
-function Map({offers, currentOffer, mapMods}: MapProps): JSX.Element {
+function Map({offers, currentOffer, mainOffer, mapMods}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const city = useAppSelector(getCity);
   const map = useMap(mapRef, city);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (map) {
@@ -52,17 +54,33 @@ function Map({offers, currentOffer, mapMods}: MapProps): JSX.Element {
 
         markers.push(marker);
 
-        marker.on('click', () => navigate (`/offer/${offer.id}`));
+        marker.on('click', () => {
+          dispatch(fetchCurrentOfferAction(offer.id));
+          dispatch(fetchNearbyOffersAction(offer.id));
+          dispatch(fetchCommentsAction(offer.id));
+          navigate (`/offer/${offer.id}`);
+        });
       });
+
+      if (mainOffer) {
+        const mainMarker = new Marker ({
+          lat: mainOffer.location.latitude,
+          lng: mainOffer.location.longitude
+        }, {
+          icon: currentCustomIcon,
+        });
+        mainMarker.addTo(map);
+        markers.push(mainMarker);
+      }
 
       return () => markers.forEach((marker) => map.removeLayer(marker));
     }
 
 
-  }, [map, city, offers, currentOffer]);
+  }, [map, city, offers, currentOffer, mainOffer, navigate, dispatch]);
 
   if (mapMods === 'big') {
-    return <div style={{height: '579px'}} ref={mapRef}></div>;
+    return <div style={{height: '579px', width: '80%', margin: '0 auto'}} ref={mapRef}></div>;
   } else {
     return <div style={{height: '100%'}} ref={mapRef}></div>;
   }

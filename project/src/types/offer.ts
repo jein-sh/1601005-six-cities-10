@@ -25,7 +25,7 @@ export type Offer = {
   maxAdults: number,
   previewImage: string,
   price: number,
-  ratingFull: number,
+  rating: number,
   title: string,
   type: string,
 }

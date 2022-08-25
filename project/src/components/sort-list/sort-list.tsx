@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { SortType } from '../../const';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import { sortChoice } from '../../store/offers-data/offers-data';
+import { getSortType } from '../../store/offers-data/selectors';
 
-type SortListProps = {
-  sortType: string;
-  updateSortType: (sort: string) => void;
-}
-
-function SortList({sortType, updateSortType}: SortListProps): JSX.Element {
+function SortList(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const sortType = useAppSelector(getSortType);
 
   const [sortList, setSortList] = useState<boolean>(false);
 
@@ -25,7 +25,7 @@ function SortList({sortType, updateSortType}: SortListProps): JSX.Element {
             tabIndex={0}
             key={sort}
             onClick={() => {
-              updateSortType(sort);
+              dispatch(sortChoice({currentSortType: sort}));
               setSortList(false);
             }}
           >

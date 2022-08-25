@@ -13,8 +13,13 @@ function FormComment({id}: FormCommentProps): JSX.Element {
     comment: '',
   });
 
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const isValid = formData.comment.length >= 50 && formData.comment.length <= 300 && formData.rating !== '0';
+
   const formChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {
     const {name, value} = evt.target;
+
     setFormData({...formData, [name]: value});
   };
 
@@ -24,8 +29,12 @@ function FormComment({id}: FormCommentProps): JSX.Element {
   const onSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    dispatch(postCommentAction({id, comment, rating}));
-    setFormData({rating: '', comment: ''});
+    if (isValid) {
+      setIsSubmit(true);
+      dispatch(postCommentAction({id, comment, rating}));
+      setFormData({rating: '', comment: ''});
+      setIsSubmit(false);
+    }
   };
 
   return (
@@ -36,6 +45,7 @@ function FormComment({id}: FormCommentProps): JSX.Element {
         <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"
           checked={formData.rating === '5'}
           onChange={formChangeHandle}
+          disabled={isSubmit}
         />
         <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
           <svg className="form__star-image" width="37" height="33">
@@ -46,6 +56,7 @@ function FormComment({id}: FormCommentProps): JSX.Element {
         <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"
           checked={formData.rating === '4'}
           onChange={formChangeHandle}
+          disabled={isSubmit}
         />
         <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
           <svg className="form__star-image" width="37" height="33">
@@ -56,6 +67,7 @@ function FormComment({id}: FormCommentProps): JSX.Element {
         <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"
           checked={formData.rating === '3'}
           onChange={formChangeHandle}
+          disabled={isSubmit}
         />
         <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
           <svg className="form__star-image" width="37" height="33">
@@ -66,6 +78,7 @@ function FormComment({id}: FormCommentProps): JSX.Element {
         <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"
           checked={formData.rating === '2'}
           onChange={formChangeHandle}
+          disabled={isSubmit}
         />
         <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
           <svg className="form__star-image" width="37" height="33">
@@ -76,6 +89,7 @@ function FormComment({id}: FormCommentProps): JSX.Element {
         <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"
           checked={formData.rating === '1'}
           onChange={formChangeHandle}
+          disabled={isSubmit}
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
           <svg className="form__star-image" width="37" height="33">
@@ -83,16 +97,17 @@ function FormComment({id}: FormCommentProps): JSX.Element {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="comment" name="comment" placeholder="Tell how was your stay, what you like and what can be improved"
+      <textarea className="reviews__textarea form__textarea" id="comment" name="comment" placeholder="Tell how was your stay, what you like and what can be improved" maxLength={300}
         value={formData.comment}
         onChange={formChangeHandle}
+        disabled={isSubmit}
       >
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit">Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!isValid}>Submit</button>
       </div>
     </form>
   );

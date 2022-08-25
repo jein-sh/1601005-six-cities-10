@@ -6,40 +6,20 @@ import { useState } from 'react';
 import CityList from '../../components/city-list/city-list';
 import SortList from '../../components/sort-list/sort-list';
 import Header from '../../components/header/header';
-import { filteredOffers, getCity } from '../../store/offers-data/selectors';
-import { SortType } from '../../const';
-import { sortHigtToLow, sortLowToHigt, sortRating } from '../../untils';
+import { getFilteredOffers, getCity} from '../../store/offers-data/selectors';
+
 
 function MainPage(): JSX.Element {
   const city = useAppSelector(getCity);
-  const offers = useAppSelector(filteredOffers);
+  const offers = useAppSelector(getFilteredOffers);
 
   const isMainEmpty = offers.length === 0 ;
 
-  let sortedOffers = offers;
-
   const [currentOffer, setCurrentOffer] = useState<Offer | undefined>(undefined);
-  const [sortType, setSortType] = useState<string>(SortType.Popular);
 
   const updateCurrentOffer = (offer : Offer | undefined) => {
     setCurrentOffer(offer);
   };
-
-  const updateSortType = (sort: string) => {
-    setSortType(sort);
-  };
-
-  switch (sortType) {
-    case SortType.LowToHigh:
-      sortedOffers = offers.sort(sortLowToHigt);
-      break;
-    case SortType.HighToLow:
-      sortedOffers = offers.sort(sortHigtToLow);
-      break;
-    case SortType.TopRatedFirst:
-      sortedOffers = offers.sort(sortRating);
-      break;
-  }
 
   return (
     <div className="page page--gray page--main">
@@ -65,9 +45,9 @@ function MainPage(): JSX.Element {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{`${offers.length} places to stay in ${city.name}`}</b>
 
-                <SortList sortType={sortType} updateSortType={updateSortType}/>
+                <SortList />
 
-                <OfferList offers= {sortedOffers} cardMods= {'cities'} updateCurrentOffer={updateCurrentOffer} />
+                <OfferList offers= {offers} cardMods= {'cities'} updateCurrentOffer={updateCurrentOffer} />
 
               </section> }
 

@@ -1,8 +1,9 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {cities} from '../../cities';
 import { getCity } from '../../store/offers-data/selectors';
-import { сityChoice } from '../../store/offers-data/offers-data';
+import { sortChoice, сityChoice } from '../../store/offers-data/offers-data';
 import { memo } from 'react';
+import {SortType } from '../../const';
 
 function CityList(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -15,7 +16,10 @@ function CityList(): JSX.Element {
           {cities.map((city) => (
             <li className="locations__item" key={city.name}>
               <a className={`locations__item-link tabs__item ${currentCity.name === city.name ? 'tabs__item--active' : ''}`}
-                onClick={() => {dispatch(сityChoice({currentCity: city}));}}
+                onClick={() => {
+                  dispatch(сityChoice({currentCity: city}));
+                  dispatch(sortChoice({currentSortType: SortType.Popular}));
+                }}
               >
                 <span>{city.name}</span>
               </a>

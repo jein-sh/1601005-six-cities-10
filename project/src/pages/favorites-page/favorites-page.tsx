@@ -2,18 +2,26 @@ import { useNavigate } from 'react-router-dom';
 import { cities } from '../../cities';
 import Header from '../../components/header/header';
 import OfferList from '../../components/offer-list/offer-list';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { resetFavorite } from '../../store/favorite/favorite';
 import { getFavorite, getFavoriteLoadedStatus } from '../../store/favorite/selectors';
 import { сityChoice } from '../../store/offers-data/offers-data';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getFilterOffers } from '../../untils';
 import LoadingPage from '../loading-page/loading-page';
 
 function FavoritesPage(): JSX.Element {
   const favorite = useAppSelector(getFavorite);
   const isFavoriteLoaded = useAppSelector(getFavoriteLoadedStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  if (authorizationStatus !== AuthorizationStatus.Auth) {
+    navigate(AppRoute.Main);
+    dispatch(resetFavorite);
+  }
 
   if (isFavoriteLoaded) {
     return (
