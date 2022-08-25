@@ -6,7 +6,6 @@ import {configureMockStore} from '@jedmao/redux-mock-store';
 import HistoryRouter from '../history-route/history-route';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import PrivateFavoriteRoute from './private-favoritе-route';
-import PrivateLoginRoute from './private-login-route';
 
 const mockStore = configureMockStore();
 const history = createMemoryHistory();
