@@ -32,7 +32,7 @@ function RoomPage(): JSX.Element {
 
   const {id, price, title, rating, images, isPremium, isFavorite, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}} = currentOffer;
   const starsFull = String(rating * 100 / 5);
-  const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
+  const premium = isPremium ? <div className="property__mark"><span>Premium</span></div> : null;
   const pro = isPro ? <span className="property__user-status"></span> : null;
   const imagesOffer = images.slice(0,6);
 
