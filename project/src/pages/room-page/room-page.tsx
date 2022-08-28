@@ -30,9 +30,9 @@ function RoomPage(): JSX.Element {
 
   const reviews = comments.slice(0,10);
 
-  const {id, price, title, ratingFull, images, isPremium, isFavorite, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}} = currentOffer;
-  const starsFull = String(ratingFull * 100 / 5);
-  const premium = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
+  const {id, price, title, rating, images, isPremium, isFavorite, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}} = currentOffer;
+  const starsFull = String(rating * 100 / 5);
+  const premium = isPremium ? <div className="property__mark"><span>Premium</span></div> : null;
   const pro = isPro ? <span className="property__user-status"></span> : null;
   const imagesOffer = images.slice(0,6);
 
@@ -47,7 +47,7 @@ function RoomPage(): JSX.Element {
             <div className="property__gallery">
               {imagesOffer.map((image) =>(
                 <div key={image} className="property__image-wrapper">
-                  <img className="property__image" src={image} alt="Photo studio" />
+                  <img className="property__image" src={image} alt="Room" />
                 </div>
               ))}
             </div>
@@ -68,7 +68,7 @@ function RoomPage(): JSX.Element {
                   <span style={{ width: `${starsFull}%` }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{ratingFull}</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
@@ -123,7 +123,7 @@ function RoomPage(): JSX.Element {
           </div>
           <section className="property__map map">
 
-            <Map offers= {nearbyOffers} mapMods = {'big'} />
+            <Map offers= {nearbyOffers} mainOffer={currentOffer} mapMods = {'big'} />
 
           </section>
         </section>

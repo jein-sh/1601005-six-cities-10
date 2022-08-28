@@ -1,16 +1,17 @@
 import {Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import MainPage from '../../pages/main-page/main-page';
 import RoomPage from '../../pages/room-page/room-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import ErrorPage from '../../pages/error-page/error-page';
-import PrivateRoute from '../private-route/private-route';
 import LoadingPage from '../../pages/loading-page/loading-page';
 import { useAppSelector } from '../../hooks';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 import { getDataLoadedStatus } from '../../store/offers-data/selectors';
+import PrivateFavoriteRoute from '../private-route/private-favoritе-route';
+import PrivateLoginRoute from '../private-route/private-login-route';
 
 function App(): JSX.Element {
 
@@ -31,16 +32,18 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Login}
-          element={<LoginPage />}
+          element={
+            <PrivateLoginRoute>
+              <LoginPage />
+            </PrivateLoginRoute>
+          }
         />
         <Route
           path={AppRoute.Favorite}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateFavoriteRoute>
               <FavoritesPage />
-            </PrivateRoute>
+            </PrivateFavoriteRoute>
           }
         />
         <Route

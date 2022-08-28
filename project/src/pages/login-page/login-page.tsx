@@ -1,22 +1,27 @@
 import { FormEvent, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { cities } from '../../cities';
 import { AppRoute } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
+import { сityChoice } from '../../store/offers-data/offers-data';
 import { AuthData } from '../../types/api-data';
+import { getRandomArrIndex } from '../../untils';
 
 function LoginPage(): JSX.Element {
 
-  const emailRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
     navigate(AppRoute.Main);
   };
+
+  const randomCity = cities[getRandomArrIndex(cities.length)];
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -78,8 +83,8 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link">
-                <span>Amsterdam</span>
+              <a className="locations__item-link" onClick={() => {navigate(AppRoute.Main); dispatch(сityChoice({currentCity: randomCity}));}}>
+                <span>{randomCity.name}</span>
               </a>
             </div>
           </section>

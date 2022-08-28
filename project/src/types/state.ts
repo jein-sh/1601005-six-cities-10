@@ -15,6 +15,7 @@ export type OffersData = {
   isDataLoaded: boolean;
   city: City;
   offers: Offers;
+  sortType: string;
 };
 
 export type RoomData = {
