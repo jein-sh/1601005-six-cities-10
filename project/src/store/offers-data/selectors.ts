@@ -8,7 +8,6 @@ import { getFilterOffers, getSortedOffers } from '../../untils';
 export const getAllOffers = (state: State): Offers => state[NameSpace.Data].allOffers;
 export const getDataLoadedStatus = (state: State): boolean => state[NameSpace.Data].isDataLoaded;
 export const getCity = (state: State): City => state[NameSpace.Data].city;
-export const getOffers = (state: State): Offers => state[NameSpace.Data].offers;
 export const getSortType = (state: State): string => state[NameSpace.Data].sortType;
 
 export const getFilteredOffers = createSelector (

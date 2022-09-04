@@ -6,7 +6,7 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { resetFavorite } from '../../store/favorite/favorite';
 import { getFavorite, getFavoriteLoadedStatus } from '../../store/favorite/selectors';
-import { сityChoice } from '../../store/offers-data/offers-data';
+import { cityChoice } from '../../store/offers-data/offers-data';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getFilterOffers } from '../../untils';
 import LoadingPage from '../loading-page/loading-page';
@@ -48,7 +48,7 @@ function FavoritesPage(): JSX.Element {
                       <li className="favorites__locations-items" key={city.name}>
                         <div className="favorites__locations locations locations--current">
                           <div className="locations__item">
-                            <a className="locations__item-link" onClick={() => {navigate(AppRoute.Main); dispatch(сityChoice({currentCity: city}));}}>
+                            <a className="locations__item-link" onClick={() => {navigate(AppRoute.Main); dispatch(cityChoice({currentCity: city}));}}>
                               <span>{city.name}</span>
                             </a>
                           </div>

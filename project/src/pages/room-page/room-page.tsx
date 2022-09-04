@@ -30,7 +30,7 @@ function RoomPage(): JSX.Element {
 
   const reviews = comments.slice(0,10);
 
-  const {id, price, title, rating, images, isPremium, isFavorite, goods, bedrooms, maxAdults, description, type, host: {nameHost, isPro, avatarUrl}} = currentOffer;
+  const {id, price, title, rating, images, isPremium, isFavorite, goods, bedrooms, maxAdults, description, type, host: {name, isPro, avatarUrl}} = currentOffer;
   const starsFull = String(rating * 100 / 5);
   const premium = isPremium ? <div className="property__mark"><span>Premium</span></div> : null;
   const pro = isPro ? <span className="property__user-status"></span> : null;
@@ -102,7 +102,7 @@ function RoomPage(): JSX.Element {
                     <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    {nameHost}
+                    {name}
                   </span>
 
                   {pro}

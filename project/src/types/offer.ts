@@ -4,7 +4,7 @@ export type Host = {
   avatarUrl: string,
   id: number,
   isPro: boolean,
-  nameHost: string,
+  name: string,
 }
 
 export type Offer = {

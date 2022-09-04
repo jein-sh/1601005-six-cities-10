@@ -4,7 +4,7 @@ import { cities } from '../../cities';
 import { AppRoute } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { сityChoice } from '../../store/offers-data/offers-data';
+import { cityChoice } from '../../store/offers-data/offers-data';
 import { AuthData } from '../../types/api-data';
 import { getRandomArrIndex } from '../../untils';
 
@@ -70,6 +70,7 @@ function LoginPage(): JSX.Element {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  pattern="(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{2,}"
                   required
                 />
               </div>
@@ -83,7 +84,7 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" onClick={() => {navigate(AppRoute.Main); dispatch(сityChoice({currentCity: randomCity}));}}>
+              <a className="locations__item-link" onClick={() => {navigate(AppRoute.Main); dispatch(cityChoice({currentCity: randomCity}));}}>
                 <span>{randomCity.name}</span>
               </a>
             </div>

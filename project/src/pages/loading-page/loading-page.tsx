@@ -1,3 +1,5 @@
+import './loading-page.css';
+
 function LoadingPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
@@ -21,7 +23,7 @@ function LoadingPage(): JSX.Element {
                 <b className="cities__status">Loading ...</b>
               </div>
             </section>
-            <div className="cities__right-section" style={{height: '100vh' }}></div>
+            <div className="cities__right-section"></div>
           </div>
         </div>
       </main>

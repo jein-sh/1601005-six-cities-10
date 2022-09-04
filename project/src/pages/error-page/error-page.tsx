@@ -1,3 +1,5 @@
+import './error-page.css';
+
 function ErrorPage(): JSX.Element {
   return (
     <main className="page__main page__main--error" >
@@ -9,7 +11,7 @@ function ErrorPage(): JSX.Element {
               <a href="/" className="cities__status-description">Go to main page</a>
             </div>
           </section>
-          <div className="cities__right-section" style={{height: '100vh' }}></div>
+          <div className="cities__right-section"></div>
         </div>
       </div>
     </main>

@@ -8,6 +8,7 @@ import { Offer, Offers } from '../../types/offer';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { getCity } from '../../store/offers-data/selectors';
 import { fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyOffersAction } from '../../store/api-actions';
+import './map.css';
 
 type MapProps = {
   offers: Offers;
@@ -79,11 +80,7 @@ function Map({offers, currentOffer, mainOffer, mapMods}: MapProps): JSX.Element 
 
   }, [map, city, offers, currentOffer, mainOffer, navigate, dispatch]);
 
-  if (mapMods === 'big') {
-    return <div style={{height: '579px', width: '80%', margin: '0 auto'}} ref={mapRef}></div>;
-  } else {
-    return <div style={{height: '100%'}} ref={mapRef}></div>;
-  }
+  return <div className={`map-intro map-intro--${mapMods}`} ref={mapRef}></div>;
 }
 
 export default memo(Map);

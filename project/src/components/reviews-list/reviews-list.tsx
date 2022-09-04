@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Reviews } from '../../types/review';
-import ReviewItem from '../review/review';
+import ReviewItem from '../review-item/review-item';
 
 type reviewsListProps = {
   reviews: Reviews;

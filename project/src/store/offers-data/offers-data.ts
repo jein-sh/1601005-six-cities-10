@@ -16,7 +16,7 @@ export const offersData = createSlice({
   name: NameSpace.Data,
   initialState,
   reducers: {
-    сityChoice: (state, action) => {
+    cityChoice: (state, action) => {
       const {currentCity} = action.payload;
       state.city = currentCity;
     },
@@ -37,4 +37,4 @@ export const offersData = createSlice({
   }
 });
 
-export const {сityChoice, sortChoice} = offersData.actions;
+export const {cityChoice, sortChoice} = offersData.actions;

@@ -7,7 +7,7 @@ import LoginPage from '../../pages/login-page/login-page';
 import ErrorPage from '../../pages/error-page/error-page';
 import LoadingPage from '../../pages/loading-page/loading-page';
 import { useAppSelector } from '../../hooks';
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
 import { getDataLoadedStatus } from '../../store/offers-data/selectors';
 import PrivateFavoriteRoute from '../private-route/private-favoritе-route';

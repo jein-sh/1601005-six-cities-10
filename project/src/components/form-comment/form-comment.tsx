@@ -2,6 +2,9 @@ import {useState, ChangeEvent, FormEvent} from 'react';
 import { useAppDispatch } from '../../hooks';
 import { postCommentAction } from '../../store/api-actions';
 
+const MIN_LENGTH = 50;
+const MAX_LENGTH = 300;
+
 type FormCommentProps = {
   id: number
 }
@@ -15,7 +18,7 @@ function FormComment({id}: FormCommentProps): JSX.Element {
 
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const isValid = formData.comment.length >= 50 && formData.comment.length <= 300 && formData.rating !== '0';
+  const isValid = formData.comment.length >= MIN_LENGTH && formData.comment.length <= MAX_LENGTH && formData.rating !== '0';
 
   const formChangeHandle = (evt: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {
     const {name, value} = evt.target;
@@ -97,7 +100,7 @@ function FormComment({id}: FormCommentProps): JSX.Element {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="comment" name="comment" placeholder="Tell how was your stay, what you like and what can be improved" maxLength={300}
+      <textarea className="reviews__textarea form__textarea" id="comment" name="comment" placeholder="Tell how was your stay, what you like and what can be improved" maxLength={MAX_LENGTH}
         value={formData.comment}
         onChange={formChangeHandle}
         disabled={isSubmit}
