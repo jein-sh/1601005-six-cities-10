@@ -1,5 +1,6 @@
 {
   "name": "project",
+  "homepage": "https://jein-sh.github.io/1601005-six-cities-10/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,7 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .tsx --ext .ts src/"
+    "lint": "eslint --ext .tsx --ext .ts src/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +61,7 @@
     "axios-mock-adapter": "^1.19.0",
     "eslint-config-htmlacademy": "^6.0.0",
     "faker": "^5.5.3",
+    "gh-pages": "^5.0.0",
     "redux-devtools-extension": "^2.13.9",
     "typescript": "^4.7.4"
   }
